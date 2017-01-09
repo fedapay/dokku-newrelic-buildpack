@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ex
+
 echo "-----> Installing New Relic Agent"
 
 wget -O - https://download.newrelic.com/548C16BF.gpg | sudo apt-key add -
@@ -9,3 +11,5 @@ sudo apt-get install newrelic-php5
 sudo newrelic-install install
 
 echo "-----> Finished installing New Relic Agent"
+
+exit 0
