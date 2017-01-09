@@ -1,14 +1,19 @@
 #!/bin/sh
 
-set -ex
+indent() {
+  sed -u 's/^/       /'
+}
 
 echo "-----> Installing New Relic Agent"
-
-wget -O - https://download.newrelic.com/548C16BF.gpg | sudo apt-key add -
-sudo sh -c 'echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list'
-sudo apt-get update
-sudo apt-get install newrelic-php5
-sudo newrelic-install install
+echo "Downloading package" | indent
+wget -O - https://download.newrelic.com/548C16BF.gpg | apt-key add -
+echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list
+echo "Updating APT" | indent
+apt-get update
+echo "Installing package" | indent
+apt-get install newrelic-php5
+echo "Installing agent" | indent
+newrelic-install install
 
 echo "-----> Finished installing New Relic Agent"
 
