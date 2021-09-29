@@ -61,7 +61,7 @@ fi
 
 # GitHub's URL for the latest release, will redirect.
 LATEST_URL="https://download.newrelic.com/install/newrelic-cli/currentVersion.txt"
-BUILD_DIR="/tmp/build'
+BUILD_DIR="/tmp/build"
 DESTDIR="$BUILD_DIR/bin"
 mkdir -p $DESTDIR
 
