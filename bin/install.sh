@@ -94,6 +94,8 @@ chown root:0 "$DESTDIR/newrelic"
 
 echo "Add bin folder to PATH"
 PATH="$DESTDIR:$PATH"
+echo $DESTDIR
+echo $PATH
 
 # Delete the working directory when the install was successful.
 rm -r "$SCRATCH"
