@@ -61,7 +61,9 @@ fi
 
 # GitHub's URL for the latest release, will redirect.
 LATEST_URL="https://download.newrelic.com/install/newrelic-cli/currentVersion.txt"
-DESTDIR="${DESTDIR:-/usr/local/bin}"
+BUILD_DIR=$1
+DESTDIR="$BUILD_DIR/bin"
+mkdir -p $DESTDIR
 
 if [ -z "$VERSION" ]; then
     VERSION=$(curl -sL $LATEST_URL | cut -d "v" -f 2)
@@ -85,18 +87,13 @@ RELEASE_URL="https://download.newrelic.com/install/newrelic-cli/v${VERSION}/newr
 # Download & unpack the release tarball.
 curl -sL --retry 3 "${RELEASE_URL}" | tar -xz
 
-echo $PATH
-if [ "$UID" != "0" ]; then
-    echo "Installing to $DESTDIR using sudo"
-    sudo mv newrelic "$DESTDIR"
-    sudo chmod +x "$DESTDIR/newrelic"
-    sudo chown root:0 "$DESTDIR/newrelic"
-else
-    echo "Installing to $DESTDIR"
-    mv newrelic "$DESTDIR"
-    chmod +x "$DESTDIR/newrelic"
-    chown root:0 "$DESTDIR/newrelic"
-fi
+echo "Installing to $DESTDIR"
+mv newrelic "$DESTDIR"
+chmod +x "$DESTDIR/newrelic"
+chown root:0 "$DESTDIR/newrelic"
+
+echo "Add bin folder to PATH"
+PATH="$DESTDIR:$PATH"
 
 # Delete the working directory when the install was successful.
 rm -r "$SCRATCH"
