@@ -85,10 +85,17 @@ RELEASE_URL="https://download.newrelic.com/install/newrelic-cli/v${VERSION}/newr
 # Download & unpack the release tarball.
 curl -sL --retry 3 "${RELEASE_URL}" | tar -xz
 
-echo "Installing to $DESTDIR"
-mv newrelic "$DESTDIR"
-chmod +x "$DESTDIR/newrelic"
-chown root:0 "$DESTDIR/newrelic"
+if [ "$UID" != "0" ]; then
+    echo "Installing to $DESTDIR using sudo"
+    sudo mv newrelic "$DESTDIR"
+    sudo chmod +x "$DESTDIR/newrelic"
+    sudo chown root:0 "$DESTDIR/newrelic"
+else
+    echo "Installing to $DESTDIR"
+    mv newrelic "$DESTDIR"
+    chmod +x "$DESTDIR/newrelic"
+    chown root:0 "$DESTDIR/newrelic"
+fi
 
 # Delete the working directory when the install was successful.
 rm -r "$SCRATCH"
