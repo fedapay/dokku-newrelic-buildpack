@@ -12,6 +12,6 @@ NEW_RELIC_API_KEY=$NEW_RELIC_API_KEY NEW_RELIC_ACCOUNT_ID=$NEW_RELIC_ACCOUNT_ID 
 echo "-----> Finished installing New Relic Agent"
 
 echo "Configure php-agent" | indent
-bash bin/install.sh
+bash bin/complete.sh
 
 exit 0
