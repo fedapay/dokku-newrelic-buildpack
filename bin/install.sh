@@ -85,6 +85,7 @@ RELEASE_URL="https://download.newrelic.com/install/newrelic-cli/v${VERSION}/newr
 # Download & unpack the release tarball.
 curl -sL --retry 3 "${RELEASE_URL}" | tar -xz
 
+echo $PATH
 if [ "$UID" != "0" ]; then
     echo "Installing to $DESTDIR using sudo"
     sudo mv newrelic "$DESTDIR"
