@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -z "$NEW_RELIC_API_KEY" ||  -z "$NEW_RELIC_ACCOUNT_ID" ]; then
+if [[ -z "$NEW_RELIC_API_KEY" || -z "$NEW_RELIC_ACCOUNT_ID" ]]; then
   echo "no NEW_RELIC_API_KEY or no NEW_RELIC_ACCOUNT_ID"
   exit 1
 else
