@@ -1,3 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# bin/detect <build-dir>
 
-exit 0
+if [ -z "$NEW_RELIC_API_KEY" ||  -z "$NEW_RELIC_ACCOUNT_ID" ]; then
+  echo "no NEW_RELIC_API_KEY or no NEW_RELIC_ACCOUNT_ID"
+  exit 1
+else
+  echo "Notify NewRelic"
+  exit 0
+fi
