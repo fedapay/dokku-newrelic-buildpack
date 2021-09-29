@@ -90,7 +90,7 @@ curl -sL --retry 3 "${RELEASE_URL}" | tar -xz
 echo "Installing to $DESTDIR"
 mv newrelic "$DESTDIR"
 chmod +x "$DESTDIR/newrelic"
-chown root:0 "$DESTDIR/newrelic"
+# chown root:0 "$DESTDIR/newrelic"
 
 echo "Add bin folder to PATH"
 PATH="$DESTDIR:$PATH"
